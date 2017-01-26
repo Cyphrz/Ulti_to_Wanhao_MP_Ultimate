@@ -61,9 +61,9 @@ static char* lcd_advanced_item(uint8_t nr)
     else if (nr == 2 + BED_MENU_OFFSET + EXTRUDERS)
         strcpy_P(card.longFilename, PSTR("Home head"));
     else if (nr == 3 + BED_MENU_OFFSET + EXTRUDERS)
-        strcpy_P(card.longFilename, PSTR("Lower buildplate"));
-    else if (nr == 4 + BED_MENU_OFFSET + EXTRUDERS)
         strcpy_P(card.longFilename, PSTR("Raise buildplate"));
+    else if (nr == 4 + BED_MENU_OFFSET + EXTRUDERS)
+        strcpy_P(card.longFilename, PSTR("Lower buildplate"));
     else if (nr == 5 + BED_MENU_OFFSET + EXTRUDERS)
         strcpy_P(card.longFilename, PSTR("Insert material"));
     else if (nr == 6 + BED_MENU_OFFSET + EXTRUDERS)
@@ -156,41 +156,32 @@ static void lcd_menu_maintenance_advanced()
         }
 #endif
 #if TEMP_SENSOR_BED != 0
-        else if (IS_SELECTED_SCROLL(2 + EXTRUDERS))                     // Heatup buildplate
-        {
-            enquecommand_P(PSTR("G28 Z"));
+        else if (IS_SELECTED_SCROLL(2 + EXTRUDERS))
             lcd_change_to_menu(lcd_menu_maintenance_advanced_bed_heatup, 0);
-        }
 #endif
-        else if (IS_SELECTED_SCROLL(2 + BED_MENU_OFFSET + EXTRUDERS))   // Home head
+        else if (IS_SELECTED_SCROLL(2 + BED_MENU_OFFSET + EXTRUDERS))
         {
             lcd_lib_beep();
-            enquecommand_P(PSTR("G28 X Y"));
-            enquecommand_P(PSTR("M84"));        // Release motors
+            enquecommand_P(PSTR("G28 X0 Y0"));
         }
-        else if (IS_SELECTED_SCROLL(3 + BED_MENU_OFFSET + EXTRUDERS))   // Lower bed
+        else if (IS_SELECTED_SCROLL(3 + BED_MENU_OFFSET + EXTRUDERS))
         {
             lcd_lib_beep();
-            enquecommand_P(PSTR("G28 Z"));
-            enquecommand_P(PSTR("M84"));        // Release motors
+            enquecommand_P(PSTR("G28 Z0"));
         }
-        else if (IS_SELECTED_SCROLL(4 + BED_MENU_OFFSET + EXTRUDERS))   // Raise bed
+        else if (IS_SELECTED_SCROLL(4 + BED_MENU_OFFSET + EXTRUDERS))
         {
-            char buffer[32];
             lcd_lib_beep();
-            enquecommand_P(PSTR("G28 Z"));
+            //enquecommand_P(PSTR("G28 Z0"));
             enquecommand_P(PSTR("G91"));
             enquecommand_P(PSTR("G1 Z20"));
             enquecommand_P(PSTR("G90"));
-            sprintf_P(buffer, PSTR("G1 F%i Z40"), int(homing_feedrate[Z_AXIS]));
-            enquecommand(buffer);
-            // Note: motors remain powered, otherwise the bed will descend by gravity.
         }
-        else if (IS_SELECTED_SCROLL(5 + BED_MENU_OFFSET + EXTRUDERS))   // Insert material
+        else if (IS_SELECTED_SCROLL(5 + BED_MENU_OFFSET + EXTRUDERS))
         {
             char buffer[32];
-            enquecommand_P(PSTR("G28 X Y"));
-            sprintf_P(buffer, PSTR("G1 F%i X%i Y%i"), int(homing_feedrate[X_AXIS]), X_MAX_LENGTH/2, 10);
+            enquecommand_P(PSTR("G28 X0 Y0"));
+            sprintf_P(buffer, PSTR("G1 F%i X%i Y%i"), int(homing_feedrate[0]), X_MAX_LENGTH/2, 10);
             enquecommand(buffer);
             
             lcd_change_to_menu_insert_material(lcd_menu_maintenance_advanced_return);
@@ -317,7 +308,7 @@ void lcd_menu_advanced_stats()
 {
     lcd_info_screen(previousMenu, NULL, PSTR("Return"));
     lcd_lib_draw_string_centerP(10, PSTR("Machine on for:"));
-    char buffer[LCD_MAX_TEXT_LINE_LENGTH + 1];      // Longest string = "hh:mm Mat:12345678m" = 19 characters + 1
+    char buffer[16];
     char* c = int_to_string(lifetime_minutes / 60, buffer, PSTR(":"));
     if (lifetime_minutes % 60 < 10)
         *c++ = '0';
@@ -404,7 +395,7 @@ static void lcd_menu_maintenance_retraction()
         if (IS_SELECTED_SCROLL(0))
         {
             Config_StoreSettings();
-            lcd_change_to_menu(lcd_menu_maintenance_advanced, SCROLL_MENU_ITEM_POS(6 + BED_MENU_OFFSET + EXTRUDERS * 2));
+            lcd_change_to_menu(lcd_menu_maintenance_advanced, SCROLL_MENU_ITEM_POS(6 + EXTRUDERS * 2));
         }
         else if (IS_SELECTED_SCROLL(1))
             LCD_EDIT_SETTING_FLOAT001(retract_length, "Retract length", "mm", 0, 50);
@@ -473,7 +464,7 @@ static void lcd_menu_maintenance_motion()
             digipot_current(1, motor_current_setting[1]);
             digipot_current(2, motor_current_setting[2]);
             Config_StoreSettings();
-            lcd_change_to_menu(lcd_menu_maintenance_advanced, SCROLL_MENU_ITEM_POS(7 + BED_MENU_OFFSET + EXTRUDERS * 2));
+            lcd_change_to_menu(lcd_menu_maintenance_advanced, SCROLL_MENU_ITEM_POS(7));
         }
         else if (IS_SELECTED_SCROLL(1))
             LCD_EDIT_SETTING_FLOAT100(acceleration, "Acceleration", "mm/sec^2", 0, 20000);
