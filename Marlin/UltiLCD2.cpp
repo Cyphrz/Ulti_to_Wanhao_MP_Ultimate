@@ -146,7 +146,7 @@ void lcd_menu_startup()
 
     if (led_glow < 84)
     {
-        lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);
+        lcd_lib_draw_gfx(0, 0, ultimakerTextGfx);
         /*for(uint8_t n=0;n<10;n++)
         {
             if (led_glow*2 >= n + 20)
