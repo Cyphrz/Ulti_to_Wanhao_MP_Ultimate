@@ -179,6 +179,9 @@ static void lcd_menu_maintenance_advanced()
             char buffer[32];
             lcd_lib_beep();
             enquecommand_P(PSTR("G28 Z"));
+            enquecommand_P(PSTR("G91"));
+            enquecommand_P(PSTR("G1 Z20"));
+            enquecommand_P(PSTR("G90"));
             sprintf_P(buffer, PSTR("G1 F%i Z40"), int(homing_feedrate[Z_AXIS]));
             enquecommand(buffer);
             // Note: motors remain powered, otherwise the bed will descend by gravity.

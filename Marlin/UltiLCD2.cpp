@@ -147,7 +147,7 @@ void lcd_menu_startup()
     if (led_glow < 84)
     {
         lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);
-        for(uint8_t n=0;n<10;n++)
+        /*for(uint8_t n=0;n<10;n++)
         {
             if (led_glow*2 >= n + 20)
                 lcd_lib_clear(0, 22+n*2, led_glow*2-n-20, 23+n*2);
@@ -155,7 +155,8 @@ void lcd_menu_startup()
                 lcd_lib_clear(led_glow*2 - n, 22+n*2, 127, 23+n*2);
             else
                 lcd_lib_clear(0, 22+n*2, 127, 23+n*2);
-        }
+
+        }*/
     /*
     }else if (led_glow < 86) {
         led_glow--;
@@ -164,10 +165,10 @@ void lcd_menu_startup()
         lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);
     */
     }else{
-        led_glow--;
+        /*led_glow--;
         //lcd_lib_draw_gfx(80, 0, ultimakerRobotGfx);
         //lcd_lib_clear_gfx(0, 22, ultimakerTextOutlineGfx);
-        lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);
+        lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);*/
     }
     lcd_lib_update_screen();
 
@@ -185,7 +186,8 @@ void lcd_menu_startup()
 #ifdef SPECIAL_STARTUP
         currentMenu = lcd_menu_special_startup;
 #else
-        if (!IS_FIRST_RUN_DONE())
+        //if (!IS_FIRST_RUN_DONE())
+        if(0)
         {
             currentMenu = lcd_menu_first_run_init;
         }else{
