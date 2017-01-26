@@ -3,9 +3,10 @@ Install Instructions for Duplicator 6/ Monoprice Maker Ultimate
 Open cura
 On the top menu
 Machine->Install Custom Firmware->Select the latest hex file from the <a href="https://github.com/Cyphrz/Ulti_to_Wanhao_MP_Ultimate/releases/latest">releases page</a>
+Wait for upload and reboot.
+Reset factory settings and redo the bed leveling to finish.
 
-
-
+To return to stock firmware, simply download the latest hex file from wanhao or download (todo link) here.
 
 ==========================
 Marlin 3D Printer Firmware
