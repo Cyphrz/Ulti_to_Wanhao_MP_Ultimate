@@ -2,7 +2,7 @@ Install Instructions for Duplicator 6/ Monoprice Maker Ultimate
 
 Open cura
 On the top menu
-Machine->Install Custom Firmware->Select the latest hex file from the <a href=" https://github.com/Cyphrz/Ulti_to_Wanhao_MP_Ultimate/releases>Releases page</a>
+Machine->Install Custom Firmware->Select the latest hex file from the <a href="https://github.com/Cyphrz/Ulti_to_Wanhao_MP_Ultimate/releases/latest">releases page</a>
 
 
 
@@ -10,8 +10,6 @@ Machine->Install Custom Firmware->Select the latest hex file from the <a href=" 
 ==========================
 Marlin 3D Printer Firmware
 ==========================
-
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=ErikZalm&url=https://github.com/ErikZalm/Marlin&title=Marlin&language=&tags=github&category=software)
 
 Quick Information
 ===================
