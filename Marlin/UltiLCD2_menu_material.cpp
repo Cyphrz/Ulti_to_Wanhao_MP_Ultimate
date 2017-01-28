@@ -312,9 +312,8 @@ static void lcd_menu_change_material_insert_wait_user()
 
     lcd_question_screen(NULL, lcd_menu_change_material_insert_wait_user_ready, PSTR("READY"), post_change_material_menu, cancelMaterialInsert, PSTR("CANCEL"));
     lcd_lib_draw_string_centerP(10, PSTR("Insert new material"));
-    lcd_lib_draw_string_centerP(20, PSTR("from the backside of"));
-    lcd_lib_draw_string_centerP(30, PSTR("your machine,"));
-    lcd_lib_draw_string_centerP(40, PSTR("above the arrow."));
+    lcd_lib_draw_string_centerP(20, PSTR("from the top of"));
+    lcd_lib_draw_string_centerP(30, PSTR("your machine."));
     lcd_lib_update_screen();
 }
 
@@ -831,11 +830,11 @@ void lcd_material_reset_defaults()
 
     strcpy_P(buffer, PSTR("PLA"));
     eeprom_write_block(buffer, EEPROM_MATERIAL_NAME_OFFSET(0), 4);
-    eeprom_write_word(EEPROM_MATERIAL_TEMPERATURE_OFFSET(0), 210);
+    eeprom_write_word(EEPROM_MATERIAL_TEMPERATURE_OFFSET(0), 200);
     eeprom_write_word(EEPROM_MATERIAL_BED_TEMPERATURE_OFFSET(0), 60);
     eeprom_write_byte(EEPROM_MATERIAL_FAN_SPEED_OFFSET(0), 100);
     eeprom_write_word(EEPROM_MATERIAL_FLOW_OFFSET(0), 100);
-    eeprom_write_float(EEPROM_MATERIAL_DIAMETER_OFFSET(0), 2.85);
+    eeprom_write_float(EEPROM_MATERIAL_DIAMETER_OFFSET(0), 1.75);
 
     eeprom_write_word(EEPROM_MATERIAL_CHANGE_TEMPERATURE(0), 210);
     eeprom_write_byte(EEPROM_MATERIAL_CHANGE_WAIT_TIME(0), 0);
@@ -846,7 +845,7 @@ void lcd_material_reset_defaults()
     eeprom_write_word(EEPROM_MATERIAL_BED_TEMPERATURE_OFFSET(1), 90);
     eeprom_write_byte(EEPROM_MATERIAL_FAN_SPEED_OFFSET(1), 50);
     eeprom_write_word(EEPROM_MATERIAL_FLOW_OFFSET(1), 107);
-    eeprom_write_float(EEPROM_MATERIAL_DIAMETER_OFFSET(1), 2.85);
+    eeprom_write_float(EEPROM_MATERIAL_DIAMETER_OFFSET(1), 1.75);
 
     eeprom_write_word(EEPROM_MATERIAL_CHANGE_TEMPERATURE(1), 260);
     eeprom_write_byte(EEPROM_MATERIAL_CHANGE_WAIT_TIME(1), 0);
@@ -857,7 +856,7 @@ void lcd_material_reset_defaults()
     eeprom_write_word(EEPROM_MATERIAL_BED_TEMPERATURE_OFFSET(2), 60);
     eeprom_write_byte(EEPROM_MATERIAL_FAN_SPEED_OFFSET(2), 50);
     eeprom_write_word(EEPROM_MATERIAL_FLOW_OFFSET(2), 100);
-    eeprom_write_float(EEPROM_MATERIAL_DIAMETER_OFFSET(2), 2.85);
+    eeprom_write_float(EEPROM_MATERIAL_DIAMETER_OFFSET(2), 1.75);
 
     eeprom_write_word(EEPROM_MATERIAL_CHANGE_TEMPERATURE(2), 250);
     eeprom_write_byte(EEPROM_MATERIAL_CHANGE_WAIT_TIME(2), 0);
@@ -996,7 +995,7 @@ bool lcd_material_verify_material_settings()
         eeprom_write_word(EEPROM_MATERIAL_BED_TEMPERATURE_OFFSET(cnt), 60);
         eeprom_write_byte(EEPROM_MATERIAL_FAN_SPEED_OFFSET(cnt), 50);
         eeprom_write_word(EEPROM_MATERIAL_FLOW_OFFSET(cnt), 100);
-        eeprom_write_float(EEPROM_MATERIAL_DIAMETER_OFFSET(cnt), 2.85);
+        eeprom_write_float(EEPROM_MATERIAL_DIAMETER_OFFSET(cnt), 1.75);
 
         eeprom_write_word(EEPROM_MATERIAL_CHANGE_TEMPERATURE(cnt), 250);
         eeprom_write_byte(EEPROM_MATERIAL_CHANGE_WAIT_TIME(cnt), 0);
