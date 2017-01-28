@@ -8,6 +8,15 @@ Reset factory settings and redo the bed leveling to finish.
 
 To return to stock firmware, simply download the latest hex file from wanhao or download (todo link) here.
 
+This firmware improves:
+Materials, proper directions on OLED
+Faster build plate
+Better safety features
+In sync with Ultimaker Firmware, for the latest up to date bug fixes.
+Better PID tuining
+Lower build plate a little on cancel.
+Many bug fixes
+
 ==========================
 Marlin 3D Printer Firmware
 ==========================
