@@ -89,7 +89,9 @@ static void abortPrint()
         enquecommand_P(PSTR("G28"));
     }*/
 	enquecommand_P(PSTR("G28 X0 Y0"));
-
+    enquecommand_P(PSTR("G91"));
+    enquecommand_P(PSTR("G1 Z3"));
+    enquecommand_P(PSTR("G90"));
     enquecommand_P(PSTR("M84"));
 }
 
@@ -644,10 +646,10 @@ static void lcd_menu_print_classic_warning()
 {
     lcd_question_screen(lcd_menu_print_printing, doStartPrint, PSTR("CONTINUE"), lcd_menu_print_select, NULL, PSTR("CANCEL"));
 
-    lcd_lib_draw_string_centerP(10, PSTR("This file will"));
-    lcd_lib_draw_string_centerP(20, PSTR("override machine"));
-    lcd_lib_draw_string_centerP(30, PSTR("setting with setting"));
-    lcd_lib_draw_string_centerP(40, PSTR("from the slicer."));
+    lcd_lib_draw_string_centerP(10, PSTR("Using GCODE"));
+    lcd_lib_draw_string_centerP(20, PSTR("Slicer Settings."));
+    lcd_lib_draw_string_centerP(30, PSTR("Printer settings"));
+    lcd_lib_draw_string_centerP(40, PSTR("are not in use."));
 
     lcd_lib_update_screen();
 }
